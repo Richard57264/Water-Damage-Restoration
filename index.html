@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaShield Long Island | Emergency Water Damage & Restoration Experts</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            red: '#DC2626',
+                            redSoft: '#FEE2E2',
+                            redLight: '#FEF2F2',
+                            redAccent: '#EF4444',
+                            dark: '#0F172A',
+                            charcoal: '#1E293B',
+                            lightBg: '#FAFAFA',
+                            cardBg: '#FFFFFF',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Apple-Style Fluid Typography & Smooth Environment */
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #FAFAFA;
+            color: #0F172A;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Dynamic Interactive Canvas Background */
+        #water-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.65;
+        }
+
+        /* Glassmorphism Header & Dynamic Morphing Cards */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid rgba(220, 38, 38, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(220, 38, 38, 0.08);
+            box-shadow: 0 10px 35px -10px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(220, 38, 38, 0.02);
+            will-change: transform, filter, box-shadow;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+        }
+
+        .glass-card:hover {
+            box-shadow: 0 25px 50px -12px rgba(220, 38, 38, 0.14);
+            border-color: rgba(220, 38, 38, 0.3);
+        }
+
+        /* Apple Product Reveal & Assembly Engine Classes */
+        .reveal-assembly {
+            opacity: 0;
+            filter: blur(12px);
+            transform: translateY(40px) scale(0.96);
+            will-change: opacity, filter, transform;
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), 
+                        filter 1s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-assembly.assembled {
+            opacity: 1;
+            filter: blur(0px);
+            transform: translateY(0) scale(1);
+        }
+
+        /* Word-by-Word Text Assembly */
+        .word-assembly-span {
+            display: inline-block;
+            opacity: 0;
+            filter: blur(8px);
+            transform: translateY(20px) scale(0.92);
+            will-change: opacity, filter, transform;
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
+                        filter 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .word-assembly-span.word-in {
+            opacity: 1;
+            filter: blur(0px);
+            transform: translateY(0) scale(1);
+        }
+
+        /* Page Switcher Display Control & Liquid Wipe */
+        .page-content {
+            display: none;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .page-content.active-page {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 3D Tilt Image Wrapper */
+        .tilt-card {
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+
+        .tilt-card-inner {
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform;
+        }
+
+        /* Pulse Ring for Live Units */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(220, 38, 38, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+        }
+
+        .pulse-beacon {
+            animation: pulse-ring 2s infinite;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAFAFA;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #FCA5A5;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #EF4444;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-brand-redSoft selection:text-brand-red relative">
+
+    <!-- Interactive HTML5 Water Canvas Background -->
+    <canvas id="water-canvas"></canvas>
+
+    <!-- ================= NAVBAR ================= -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" onclick="switchPage('home')" class="flex items-center gap-3 group relative z-10">
+                <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-brand-red via-red-500 to-slate-900 flex items-center justify-center text-white shadow-lg shadow-red-500/20 group-hover:scale-110 transition-transform duration-500">
+                    <i class="fa-solid fa-droplet text-lg group-hover:animate-bounce"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold tracking-tight text-brand-dark block leading-none">AquaShield</span>
+                    <span class="text-[10px] font-bold text-brand-red uppercase tracking-widest">Long Island</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links with Magnetic Pills -->
+            <nav class="hidden md:flex items-center gap-1 bg-red-50/60 p-1.5 rounded-full border border-red-100/60 shadow-inner">
+                <button onclick="switchPage('home')" id="nav-home" class="nav-btn px-5 py-2 text-sm font-semibold rounded-full transition-all duration-300 text-brand-red bg-white shadow-sm">Home</button>
+                <button onclick="switchPage('services')" id="nav-services" class="nav-btn px-5 py-2 text-sm font-semibold rounded-full transition-all duration-300 text-slate-600 hover:text-brand-red">Services</button>
+                <button onclick="switchPage('about')" id="nav-about" class="nav-btn px-5 py-2 text-sm font-semibold rounded-full transition-all duration-300 text-slate-600 hover:text-brand-red">About Us</button>
+                <button onclick="switchPage('blog')" id="nav-blog" class="nav-btn px-5 py-2 text-sm font-semibold rounded-full transition-all duration-300 text-slate-600 hover:text-brand-red">Resource Center</button>
+                <button onclick="switchPage('contact')" id="nav-contact" class="nav-btn px-5 py-2 text-sm font-semibold rounded-full transition-all duration-300 text-slate-600 hover:text-brand-red">Contact</button>
+            </nav>
+
+            <!-- Quick Action CTA -->
+            <button onclick="switchPage('contact')" class="magnetic-btn hidden sm:inline-flex items-center gap-2 bg-brand-dark text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-brand-red transition-all duration-300 shadow-md hover:shadow-red-500/25 hover:scale-105 active:scale-95 relative overflow-hidden group">
+                <span class="relative z-10">Request Dispatch</span>
+                <i class="fa-solid fa-arrow-right text-xs relative z-10 group-hover:translate-x-1 transition-transform"></i>
+            </button>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-btn" class="md:hidden text-slate-800 p-2 focus:outline-none">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white/95 border-b border-red-100 px-6 py-4 flex flex-col gap-3">
+            <button onclick="switchPage('home')" class="text-left py-2 font-medium text-slate-700 hover:text-brand-red">Home</button>
+            <button onclick="switchPage('services')" class="text-left py-2 font-medium text-slate-700 hover:text-brand-red">Services</button>
+            <button onclick="switchPage('about')" class="text-left py-2 font-medium text-slate-700 hover:text-brand-red">About Us</button>
+            <button onclick="switchPage('blog')" class="text-left py-2 font-medium text-slate-700 hover:text-brand-red">Resource Center</button>
+            <button onclick="switchPage('contact')" class="text-left py-2 font-medium text-slate-700 hover:text-brand-red">Contact</button>
+        </div>
+    </header>
+
+    <!-- Main Container for Dynamic Pages -->
+    <main class="pt-28 pb-16 flex-grow relative z-10">
+
+        <!-- ================= PAGE 1: HOME ================= -->
+        <div id="page-home" class="page-content active-page">
+            <!-- Hero Section -->
+            <section class="max-w-7xl mx-auto px-6 pt-12 pb-20 text-center">
+                <div class="reveal-assembly inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-redLight border border-brand-redSoft text-brand-red text-xs font-bold uppercase tracking-wider mb-8 shadow-sm">
+                    <span class="w-2.5 h-2.5 rounded-full bg-brand-red pulse-beacon"></span>
+                    24/7 Rapid Response Unit Across Long Island
+                </div>
+
+                <!-- Word-by-word Assembled Hero Title -->
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-brand-dark tracking-tight max-w-4xl mx-auto leading-tight word-assembly-title">
+                    Precision Recovery. Restoring Comfort Effortlessly.
+                </h1>
+
+                <p class="reveal-assembly text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto mt-6 leading-relaxed font-light">
+                    Advanced structural drying, moisture mitigation, and complete environmental restoration engineered for Long Island residences and commercial estates.
+                </p>
+
+                <div class="reveal-assembly flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
+                    <button onclick="switchPage('contact')" class="magnetic-btn w-full sm:w-auto px-8 py-4 bg-brand-red hover:bg-red-700 text-white font-semibold rounded-2xl shadow-xl shadow-red-500/25 transition-all duration-300 hover:scale-105 active:scale-95">
+                        Request Immediate Service
+                    </button>
+                    <button onclick="switchPage('services')" class="magnetic-btn w-full sm:w-auto px-8 py-4 bg-white/90 hover:bg-white text-brand-dark font-semibold rounded-2xl border border-slate-200/80 shadow-sm transition-all duration-300 hover:border-brand-redSoft hover:scale-105">
+                        Explore Solutions
+                    </button>
+                </div>
+
+                <!-- Visual Graphics Grid (3D Parallax Tilt Cards) -->
+                <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+                    <div class="reveal-assembly tilt-card">
+                        <div class="tilt-card-inner relative overflow-hidden rounded-3xl h-64 shadow-md group">
+                            <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80" alt="Clean Modern Interior Restoration" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-6 left-6 right-6 text-white">
+                                <span class="text-xs uppercase font-semibold text-red-300 tracking-wider">Residential Care</span>
+                                <h3 class="text-lg font-bold mt-0.5">Structural Moisture Extraction</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="reveal-assembly tilt-card">
+                        <div class="tilt-card-inner relative overflow-hidden rounded-3xl h-64 shadow-md group">
+                            <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80" alt="Advanced Extraction Technology" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-6 left-6 right-6 text-white">
+                                <span class="text-xs uppercase font-semibold text-red-300 tracking-wider">High-Tech Equipment</span>
+                                <h3 class="text-lg font-bold mt-0.5">Thermal Leak Detection</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="reveal-assembly tilt-card">
+                        <div class="tilt-card-inner relative overflow-hidden rounded-3xl h-64 shadow-md group">
+                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Restored Luxury Living Room" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-6 left-6 right-6 text-white">
+                                <span class="text-xs uppercase font-semibold text-red-300 tracking-wider">Complete Finish</span>
+                                <h3 class="text-lg font-bold mt-0.5">Comprehensive Remediation</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Metrics Counter Bar -->
+            <section class="max-w-7xl mx-auto px-6 py-8">
+                <div class="reveal-assembly glass-card rounded-3xl p-8 grid grid-cols-2 lg:grid-cols-4 gap-8 text-center border-t-2 border-brand-red">
+                    <div>
+                        <div class="text-3xl sm:text-4xl font-extrabold text-brand-dark"><span class="counter" data-target="30">0</span> <span class="text-brand-red">Min</span></div>
+                        <div class="text-xs font-medium text-slate-500 uppercase tracking-wider mt-1">Avg Response Time</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl sm:text-4xl font-extrabold text-brand-dark"><span class="counter" data-target="100">0</span><span class="text-brand-red">%</span></div>
+                        <div class="text-xs font-medium text-slate-500 uppercase tracking-wider mt-1">Moisture Removal Target</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl sm:text-4xl font-extrabold text-brand-dark">IICRC</div>
+                        <div class="text-xs font-medium text-slate-500 uppercase tracking-wider mt-1">Certified Specialists</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl sm:text-4xl font-extrabold text-brand-dark">24 / 7</div>
+                        <div class="text-xs font-medium text-slate-500 uppercase tracking-wider mt-1">Emergency Service</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interactive Service Preview Grid -->
+            <section class="max-w-7xl mx-auto px-6 py-16">
+                <div class="text-center max-w-2xl mx-auto mb-16 reveal-assembly">
+                    <h2 class="text-xs font-bold text-brand-red uppercase tracking-widest mb-2">Our Standard of Care</h2>
+                    <p class="text-3xl sm:text-4xl font-bold text-brand-dark">Engineered Solutions for Every Contingency</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="reveal-assembly glass-card rounded-3xl p-8 group">
+                        <div class="w-14 h-14 rounded-2xl bg-brand-redLight flex items-center justify-center text-brand-red text-2xl mb-6 group-hover:scale-110 group-hover:bg-brand-red group-hover:text-white transition-all duration-500">
+                            <i class="fa-solid fa-faucet-drip"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-dark mb-3">Rapid Water Extraction</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">Utilizing industrial submersible pumps and truck-mounted vacuum systems to purge standing water instantly.</p>
+                        <button onclick="switchPage('services')" class="text-sm font-semibold text-brand-red hover:text-red-700 inline-flex items-center gap-2 group-hover:translate-x-1 transition-transform">Read Details <i class="fa-solid fa-chevron-right text-xs"></i></button>
+                    </div>
+
+                    <div class="reveal-assembly glass-card rounded-3xl p-8 group">
+                        <div class="w-14 h-14 rounded-2xl bg-brand-redLight flex items-center justify-center text-brand-red text-2xl mb-6 group-hover:scale-110 group-hover:bg-brand-red group-hover:text-white transition-all duration-500">
+                            <i class="fa-solid fa-wind"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-dark mb-3">Structural Drying</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">Deploying high-velocity air movers and commercial LGR dehumidifiers to eliminate deep structural dampness.</p>
+                        <button onclick="switchPage('services')" class="text-sm font-semibold text-brand-red hover:text-red-700 inline-flex items-center gap-2 group-hover:translate-x-1 transition-transform">Read Details <i class="fa-solid fa-chevron-right text-xs"></i></button>
+                    </div>
+
+                    <div class="reveal-assembly glass-card rounded-3xl p-8 group">
+                        <div class="w-14 h-14 rounded-2xl bg-brand-redLight flex items-center justify-center text-brand-red text-2xl mb-6 group-hover:scale-110 group-hover:bg-brand-red group-hover:text-white transition-all duration-500">
+                            <i class="fa-solid fa-shield-virus"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-dark mb-3">Microbial Prevention</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">Applying EPA-registered botanical anti-microbial treatments to safeguard against mold and secondary degradation.</p>
+                        <button onclick="switchPage('services')" class="text-sm font-semibold text-brand-red hover:text-red-700 inline-flex items-center gap-2 group-hover:translate-x-1 transition-transform">Read Details <i class="fa-solid fa-chevron-right text-xs"></i></button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= PAGE 2: SERVICES ================= -->
+        <div id="page-services" class="page-content">
+            <section class="max-w-7xl mx-auto px-6 py-12">
+                <div class="text-center max-w-3xl mx-auto mb-16 reveal-assembly">
+                    <span class="px-4 py-1.5 rounded-full bg-brand-redLight text-brand-red text-xs font-bold uppercase tracking-wider">Service Portfolio</span>
+                    <h1 class="text-4xl sm:text-5xl font-extrabold text-brand-dark mt-4">Advanced Restoration Capabilities</h1>
+                    <p class="text-slate-600 mt-4 text-lg">Meticulous restoration workflows designed to restore structural integrity quickly and cleanly.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Service Card 1 -->
+                    <div class="reveal-assembly glass-card rounded-3xl p-8 flex flex-col justify-between group">
+                        <div>
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="w-12 h-12 rounded-2xl bg-red-100 text-brand-red flex items-center justify-center text-xl group-hover:rotate-12 transition-transform">
+                                    <i class="fa-solid fa-house-tsunami"></i>
+                                </div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-slate-400">01 / Emergency</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-brand-dark mb-3">Emergency Water Extraction</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-6">Standing water poses an immediate risk to foundations, subflooring, and interior finishes. Our high-capacity extraction units deploy within minutes to draw out excess moisture before severe saturation occurs.</p>
+                        </div>
+                        <div class="overflow-hidden rounded-2xl">
+                            <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=800&q=80" alt="Extraction Process" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-700">
+                        </div>
+                    </div>
+
+                    <!-- Service Card 2 -->
+                    <div class="reveal-assembly glass-card rounded-3xl p-8 flex flex-col justify-between group">
+                        <div>
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="w-12 h-12 rounded-2xl bg-red-100 text-brand-red flex items-center justify-center text-xl group-hover:rotate-12 transition-transform">
+                                    <i class="fa-solid fa-temperature-arrow-up"></i>
+                                </div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-slate-400">02 / Drying</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-brand-dark mb-3">Structural Drying & Dehumidification</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-6">Moisture trapped inside drywall and hardwood flooring isn't visible to the naked eye. We utilize infrared thermography and deep-penetrating moisture meters alongside heavy-duty LGR dehumidifiers.</p>
+                        </div>
+                        <div class="overflow-hidden rounded-2xl">
+                            <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80" alt="Drying Tech" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-700">
+                        </div>
+                    </div>
+
+                    <!-- Service Card 3 -->
+                    <div class="reveal-assembly glass-card rounded-3xl p-8 flex flex-col justify-between group">
+                        <div>
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="w-12 h-12 rounded-2xl bg-red-100 text-brand-red flex items-center justify-center text-xl group-hover:rotate-12 transition-transform">
+                                    <i class="fa-solid fa-pump-soap"></i>
+                                </div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-slate-400">03 / Mitigation</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-brand-dark mb-3">Mold Remediation & Sanitization</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-6">Unchecked water retention creates microclimates ripe for mold spores within 24 to 48 hours. Our team sets up negative pressure air scrubbers and applies hospital-grade antimicrobial solutions.</p>
+                        </div>
+                        <div class="overflow-hidden rounded-2xl">
+                            <img src="https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&w=800&q=80" alt="Sanitization Process" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-700">
+                        </div>
+                    </div>
+
+                    <!-- Service Card 4 -->
+                    <div class="reveal-assembly glass-card rounded-3xl p-8 flex flex-col justify-between group">
+                        <div>
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="w-12 h-12 rounded-2xl bg-red-100 text-brand-red flex items-center justify-center text-xl group-hover:rotate-12 transition-transform">
+                                    <i class="fa-solid fa-pipe-collar"></i>
+                                </div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-slate-400">04 / Clean-up</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-brand-dark mb-3">Sewage & Biohazard Decontamination</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-6">Category 3 water backups carry hazardous pathogens requiring certified containment protocols. We safely remove bio-contaminants, disinfect surfaces, and eliminate odor molecules completely.</p>
+                        </div>
+                        <div class="overflow-hidden rounded-2xl">
+                            <img src="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?auto=format&fit=crop&w=800&q=80" alt="Clean Environment" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-700">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Callout -->
+                <div class="reveal-assembly mt-16 bg-gradient-to-r from-brand-dark via-slate-900 to-brand-dark rounded-3xl p-10 text-white flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl relative overflow-hidden">
+                    <div class="relative z-10">
+                        <h3 class="text-2xl font-bold">Unsure which restoration service you need?</h3>
+                        <p class="text-slate-400 text-sm mt-2">Send an inquiry now and our technical lead will evaluate your situation on-site or remotely.</p>
+                    </div>
+                    <button onclick="switchPage('contact')" class="magnetic-btn relative z-10 whitespace-nowrap px-8 py-4 bg-brand-red hover:bg-red-600 text-white font-semibold rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95">
+                        Request Rapid Evaluation
+                    </button>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= PAGE 3: ABOUT US ================= -->
+        <div id="page-about" class="page-content">
+            <section class="max-w-7xl mx-auto px-6 py-12">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+                    <div class="reveal-assembly">
+                        <span class="px-4 py-1.5 rounded-full bg-brand-redLight text-brand-red text-xs font-bold uppercase tracking-wider">Our Heritage</span>
+                        <h1 class="text-4xl sm:text-5xl font-extrabold text-brand-dark mt-4 leading-tight">Dedicated to Restoring Long Island Homes</h1>
+                        <p class="text-slate-600 mt-6 leading-relaxed">
+                            AquaShield was founded with a singular commitment: bringing elite structural restoration standards to Nassau and Suffolk counties. Water intrusion demands speed, scientific precision, and absolute empathy for property owners.
+                        </p>
+                        <p class="text-slate-600 mt-4 leading-relaxed">
+                            Our field technicians maintain rigorous IICRC certifications across Master Water Restorer and Applied Structural Drying categories, ensuring every project adheres strictly to ANSI/IICRC S500 standards.
+                        </p>
+
+                        <div class="grid grid-cols-2 gap-6 mt-8">
+                            <div class="p-4 rounded-2xl bg-white border border-slate-100 shadow-sm">
+                                <i class="fa-solid fa-certificate text-brand-red text-xl mb-2"></i>
+                                <h4 class="font-bold text-brand-dark">Certified Standard</h4>
+                                <p class="text-xs text-slate-500 mt-1">IICRC compliant protocols</p>
+                            </div>
+                            <div class="p-4 rounded-2xl bg-white border border-slate-100 shadow-sm">
+                                <i class="fa-solid fa-clock-rotate-left text-brand-red text-xl mb-2"></i>
+                                <h4 class="font-bold text-brand-dark">Rapid Dispatch</h4>
+                                <p class="text-xs text-slate-500 mt-1">Strategic island-wide coverage</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="reveal-assembly tilt-card relative">
+                        <div class="tilt-card-inner rounded-3xl overflow-hidden shadow-2xl border border-white">
+                            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" alt="Restoration Equipment Setup" class="w-full h-[450px] object-cover">
+                        </div>
+                        <div class="absolute -bottom-6 -left-6 glass-card p-6 rounded-2xl hidden sm:block max-w-xs shadow-xl">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-red-100 text-brand-red flex items-center justify-center font-bold">
+                                    <i class="fa-solid fa-shield-halved"></i>
+                                </div>
+                                <div>
+                                    <h5 class="text-sm font-bold text-brand-dark">Guaranteed Quality</h5>
+                                    <p class="text-xs text-slate-500">Rigorous moisture verification</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Values Grid -->
+                <div class="pt-12 border-t border-slate-200/60">
+                    <div class="text-center max-w-2xl mx-auto mb-12 reveal-assembly">
+                        <h2 class="text-2xl font-bold text-brand-dark">Core Operating Principles</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="reveal-assembly glass-card p-8 rounded-3xl">
+                            <div class="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center mb-4 font-bold">1</div>
+                            <h3 class="font-bold text-lg text-brand-dark mb-2">Transparency</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">Detailed moisture mapping readings provided to property owners before and after completion.</p>
+                        </div>
+                        <div class="reveal-assembly glass-card p-8 rounded-3xl">
+                            <div class="w-10 h-10 rounded-xl bg-brand-red text-white flex items-center justify-center mb-4 font-bold">2</div>
+                            <h3 class="font-bold text-lg text-brand-dark mb-2">Rapid Mobilization</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">Time is the primary variable in preventing secondary structural deterioration and mold.</p>
+                        </div>
+                        <div class="reveal-assembly glass-card p-8 rounded-3xl">
+                            <div class="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center mb-4 font-bold">3</div>
+                            <h3 class="font-bold text-lg text-brand-dark mb-2">Technical Mastery</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">Continuous training on psychrometrics, thermo-hygrometers, and psychrometric drying charts.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= PAGE 4: BLOG ================= -->
+        <div id="page-blog" class="page-content">
+            <article class="max-w-4xl mx-auto px-6 py-12">
+                <!-- Blog Header Container -->
+                <header class="text-center mb-12 reveal-assembly">
+                    <span class="px-4 py-1.5 rounded-full bg-brand-redLight text-brand-red text-xs font-bold uppercase tracking-wider">Expert Guide</span>
+                    <!-- Article Title (H1) -->
+                    <h1 class="text-3xl sm:text-5xl font-extrabold text-brand-dark mt-4 leading-tight">
+                        Comprehensive Guide to Emergency Water Damage Restoration in Long Island
+                    </h1>
+                    <div class="flex items-center justify-center gap-4 mt-6 text-sm text-slate-500">
+                        <span><i class="fa-regular fa-user mr-1"></i> Technical Editorial Team</span>
+                        <span>•</span>
+                        <span><i class="fa-regular fa-calendar mr-1"></i> October 2026</span>
+                        <span>•</span>
+                        <span><i class="fa-regular fa-clock mr-1"></i> 10 min read</span>
+                    </div>
+                </header>
+
+                <div class="reveal-assembly rounded-3xl overflow-hidden mb-12 shadow-xl border border-slate-100">
+                    <img src="https://images.unsplash.com/photo-1517646287270-a5a9ca602e5c?auto=format&fit=crop&w=1200&q=80" alt="Home Water Damage Inspection" class="w-full h-[400px] object-cover">
+                </div>
+
+                <!-- Comprehensive 1200+ Word Blog Content -->
+                <div class="prose max-w-none text-slate-700 leading-relaxed text-base sm:text-lg space-y-6">
+                    <p class="reveal-assembly text-xl font-light text-slate-800 leading-relaxed border-l-4 border-brand-red pl-6 italic bg-red-50/30 py-2 rounded-r-xl">
+                        Living along coastal areas like Nassau and Suffolk counties exposes properties to unique environmental stressors. Severe seasonal rainstorms, rapid freeze-thaw cycles, high water tables, and aging municipal plumbing systems all contribute to water emergencies. Understanding how to handle these events swiftly can mean the difference between minor cosmetic cleanup and catastrophic structural compromise.
+                    </p>
+
+                    <!-- Section Header (H2) -->
+                    <h2 class="reveal-assembly text-2xl sm:text-3xl font-bold text-brand-dark pt-6 border-t border-slate-200">
+                        Understanding Water Damage Intrusion Dynamics in Long Island
+                    </h2>
+                    <p class="reveal-assembly">
+                        Water intrusion is rarely a static issue. The moment clean supply water or exterior storm runoff breaches a building envelope, a relentless dynamic process begins. Porous building materials—including drywall, hardwood flooring, oriented strand board (OSB), and structural joists—act as wicks, drawing moisture upward and laterally through capillary action.
+                    </p>
+                    <p class="reveal-assembly">
+                        When dealing with 
+                        <a href="https://quickwaterrestore.com/" target="_blank" rel="noopener" class="text-brand-red font-semibold underline decoration-brand-red/30 underline-offset-4 hover:text-red-700 transition-colors">Water Damage Restoration in Long Island</a>, 
+                        homeowners must recognize that time is the single most decisive variable. Modern residential design emphasizes energy efficiency and airtight construction. While excellent for thermal insulation, this tight envelope traps elevated relative humidity (RH) inside the structure. Without mechanical drying interventions, ambient humidity quickly climbs above 70%, creating ideal conditions for fungal proliferation and deep structural degradation.
+                    </p>
+
+                    <!-- Subsection Header (H3) -->
+                    <h3 class="reveal-assembly text-xl sm:text-2xl font-bold text-brand-dark pt-4">
+                        The Three Water Contamination Categories Explained
+                    </h3>
+                    <p class="reveal-assembly">
+                        Professional restoration standards, specifically the ANSI/IICRC S500 standard, classify water intrusion into three distinct hazard categories. Identifying the correct category determines the safety equipment, extraction machinery, and sanitization agents required during remediation:
+                    </p>
+                    <ul class="reveal-assembly list-disc pl-6 space-y-2">
+                        <li><strong>Category 1 (Clean Water):</strong> Originates from sanitary sources such as broken clean water supply lines, overflowing sink basins without contaminants, or appliance supply leaks. If addressed within 24 to 48 hours, Category 1 water generally poses minimal immediate biological risk to occupants.</li>
+                        <li><strong>Category 2 (Gray Water):</strong> Contains significant contamination with the potential to cause discomfort or illness if ingested. Examples include discharge from washing machines, dishwasher overflows, or sump pump failures containing soil debris.</li>
+                        <li><strong>Category 3 (Black Water):</strong> Highly unsanitary water carrying pathogenic agents, toxic chemicals, or sewage contaminants. Common sources include rising sea surges, river flooding, or toilet backflows originating beyond the trap. Category 3 events demand specialized hazardous material containment protocols.</li>
+                    </ul>
+
+                    <!-- Section Header (H2) -->
+                    <h2 class="reveal-assembly text-2xl sm:text-3xl font-bold text-brand-dark pt-6 border-t border-slate-200">
+                        Step-by-Step Emergency Water Extraction and Mitigation Protocol
+                    </h2>
+                    <p class="reveal-assembly">
+                        A systematic, scientifically sound approach ensures that moisture is eliminated not just from visible surfaces, but from subfloors, wall cavities, and concrete foundations. The restoration lifecycle follows a strict sequence:
+                    </p>
+
+                    <!-- Subsection Header (H3) -->
+                    <h3 class="reveal-assembly text-xl sm:text-2xl font-bold text-brand-dark pt-4">
+                        1. Thermal Inspection and Moisture Mapping
+                    </h3>
+                    <p class="reveal-assembly">
+                        Visual inspection alone is insufficient. Modern restoration teams deploy FLIR thermal imaging cameras to detect subtle temperature variations caused by evaporative cooling. Where water hides behind plaster or under luxury vinyl plank (LVP) flooring, thermal cameras pinpoint moisture pockets instantly. Moisture meters with non-penetrating and deep-probe pins are then used to record quantitative baseline readings.
+                    </p>
+
+                    <!-- Subsection Header (H3) -->
+                    <h3 class="reveal-assembly text-xl sm:text-2xl font-bold text-brand-dark pt-4">
+                        2. High-Capacity Bulk Water Removal
+                    </h3>
+                    <p class="reveal-assembly">
+                        Removing liquid water in its fluid state is exponentially faster and more energy-efficient than converting it to vapor through dehumidification. Heavy-duty truck-mounted vacuum extraction systems and submersible trash pumps extract hundreds of gallons per minute, relieving hydrostatic pressure on flooring and foundation footings.
+                    </p>
+
+                    <!-- Subsection Header (H3) -->
+                    <h3 class="reveal-assembly text-xl sm:text-2xl font-bold text-brand-dark pt-4">
+                        3. Applied Psychrometrics and Structural Drying
+                    </h3>
+                    <p class="reveal-assembly">
+                        Once bulk liquid is purged, psychrometrics—the science of atmospheric moisture and drying mechanics—takes over. High-velocity air movers are positioned strategically to create high airflow velocity across wet surfaces, transforming bound liquid into water vapor. Simultaneously, low-grain refrigerant (LGR) or desiccant dehumidifiers capture vaporized water from the air and discharge it through dedicated drainage lines.
+                    </p>
+
+                    <div class="reveal-assembly my-8 p-6 rounded-2xl bg-slate-900 text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
+                        <div>
+                            <h4 class="font-bold text-lg text-red-400">Facing a Flooding Emergency Right Now?</h4>
+                            <p class="text-slate-300 text-sm mt-1">Don't wait for moisture to cause permanent structural warp or mold growth.</p>
+                        </div>
+                        <button onclick="switchPage('contact')" class="magnetic-btn whitespace-nowrap px-6 py-3 bg-brand-red hover:bg-red-600 text-white font-medium rounded-xl text-sm transition-all">
+                            Dispatch Emergency Crew
+                        </button>
+                    </div>
+
+                    <!-- Section Header (H2) -->
+                    <h2 class="reveal-assembly text-2xl sm:text-3xl font-bold text-brand-dark pt-6 border-t border-slate-200">
+                        Preventing Mold Growth and Secondary Structural Damage
+                    </h2>
+                    <p class="reveal-assembly">
+                        Fungal spores exist naturally in indoor and outdoor air currents. However, dormant spores require only three elements to germinate: oxygen, organic nutrients (cellulose in drywall or wood), and free moisture exceeding 60% relative humidity. In warm indoor conditions, mold colonies can begin forming in under 48 hours.
+                    </p>
+                    <p class="reveal-assembly">
+                        Preventing secondary mold growth requires rigorous humidity control alongside EPA-registered botanical antimicrobials. Antimicrobial agents inhibit cellular reproduction of bacteria and fungi without leaving harmful synthetic chemical residues in residential living zones.
+                    </p>
+
+                    <!-- Subsection Header (H3) -->
+                    <h3 class="reveal-assembly text-xl sm:text-2xl font-bold text-brand-dark pt-4">
+                        Long Island Regional Factors: Coastal Moisture and Sump Pump Dependability
+                    </h3>
+                    <p class="reveal-assembly">
+                        High groundwater levels across southern Nassau and eastern Suffolk counties make basements particularly susceptible to hydrostatic pressure backup during heavy rains. Proper maintenance of dual sump pumps equipped with battery-backup systems is vital for coastal homeowners. In the event of pump failure, rapid professional extraction prevents water from seeping into perimeter sill plates and wall studs.
+                    </p>
+
+                    <!-- Conclusion Section -->
+                    <h2 class="reveal-assembly text-2xl sm:text-3xl font-bold text-brand-dark pt-6 border-t border-slate-200">
+                        Conclusion
+                    </h2>
+                    <p class="reveal-assembly">
+                        Water damage events present complex challenges that require swift, measured, and scientifically backed action. From initial thermal detection and rapid water extraction to precise humidity control and structural sanitization, every step in the restoration workflow protects both your property's structural value and indoor air quality. By relying on certified emergency restoration standards, Long Island property owners can navigate sudden water intrusions with complete confidence and rapid recovery times.
+                    </p>
+
+                    <!-- FNP / FAQ / Final Thoughts Section -->
+                    <div class="reveal-assembly mt-12 p-8 rounded-3xl bg-red-50/50 border border-red-100 space-y-6">
+                        <h2 class="text-2xl font-bold text-brand-dark">Frequently Asked Questions & Final Thoughts (FNP)</h2>
+                        
+                        <div class="space-y-4">
+                            <div class="bg-white p-5 rounded-2xl border border-red-100 shadow-sm">
+                                <h4 class="font-bold text-brand-dark text-base">How quickly should water damage restoration begin?</h4>
+                                <p class="text-slate-600 text-sm mt-2">Restoration should ideally commence within 1 to 2 hours of discovery. Immediate response halts water migration, minimizes structural swelling, and prevents microbial growth before it initiates within the 24-48 hour window.</p>
+                            </div>
+
+                            <div class="bg-white p-5 rounded-2xl border border-red-100 shadow-sm">
+                                <h4 class="font-bold text-brand-dark text-base">Can carpet and padding be saved after water damage?</h4>
+                                <p class="text-slate-600 text-sm mt-2">Carpet exposed to clean (Category 1) water can often be salvaged if thoroughly extracted and dried within 24 hours. However, underlayment padding is usually replaced due to its high density, and any carpeting affected by Category 3 sewage must be disposed of safely.</p>
+                            </div>
+
+                            <div class="bg-white p-5 rounded-2xl border border-red-100 shadow-sm">
+                                <h4 class="font-bold text-brand-dark text-base">What is the expected drying duration for a flooded basement?</h4>
+                                <p class="text-slate-600 text-sm mt-2">Standard drying cycles typically last between 3 to 5 days depending on material density, extent of saturation, and ambient environmental conditions monitored through thermo-hygrometer readings.</p>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 text-center">
+                            <p class="text-sm font-semibold text-brand-red">Need professional insight or immediate assistance for your residence?</p>
+                            <button onclick="switchPage('contact')" class="magnetic-btn mt-3 px-8 py-3 bg-brand-dark text-white font-semibold rounded-2xl text-sm hover:bg-brand-red transition-colors">
+                                Submit Property Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <!-- ================= PAGE 5: CONTACT ================= -->
+        <div id="page-contact" class="page-content">
+            <section class="max-w-4xl mx-auto px-6 py-12">
+                <div class="text-center max-w-2xl mx-auto mb-12 reveal-assembly">
+                    <span class="px-4 py-1.5 rounded-full bg-brand-redLight text-brand-red text-xs font-bold uppercase tracking-wider">Direct Dispatch Inquiry</span>
+                    <h1 class="text-4xl font-extrabold text-brand-dark mt-4">Send Us Your Restoration Details</h1>
+                    <p class="text-slate-600 mt-3 text-base">Fill in your property information below. Our technical dispatch unit will receive your details instantly and contact you back directly.</p>
+                </div>
+
+                <!-- Pure Input Form Only (No business details shown upfront) -->
+                <div class="reveal-assembly glass-card rounded-3xl p-8 sm:p-12 border border-red-100 shadow-xl relative overflow-hidden">
+                    <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label for="fullName" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Full Name *</label>
+                                <input type="text" id="fullName" required placeholder="e.g. John Doe" class="w-full px-4 py-3.5 rounded-2xl bg-white/90 border border-slate-200 text-slate-800 text-sm focus:outline-none focus:border-brand-red focus:ring-4 focus:ring-red-50 transition-all duration-300">
+                            </div>
+
+                            <div>
+                                <label for="phone" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Phone Number *</label>
+                                <input type="tel" id="phone" required placeholder="e.g. (516) 000-0000" class="w-full px-4 py-3.5 rounded-2xl bg-white/90 border border-slate-200 text-slate-800 text-sm focus:outline-none focus:border-brand-red focus:ring-4 focus:ring-red-50 transition-all duration-300">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label for="email" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Email Address *</label>
+                                <input type="email" id="email" required placeholder="name@domain.com" class="w-full px-4 py-3.5 rounded-2xl bg-white/90 border border-slate-200 text-slate-800 text-sm focus:outline-none focus:border-brand-red focus:ring-4 focus:ring-red-50 transition-all duration-300">
+                            </div>
+
+                            <div>
+                                <label for="propertyType" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Property Type *</label>
+                                <select id="propertyType" required class="w-full px-4 py-3.5 rounded-2xl bg-white/90 border border-slate-200 text-slate-800 text-sm focus:outline-none focus:border-brand-red focus:ring-4 focus:ring-red-50 transition-all duration-300">
+                                    <option value="" disabled selected>Select property class</option>
+                                    <option value="single-family">Single Family Home</option>
+                                    <option value="multi-family">Multi-Family Residence</option>
+                                    <option value="commercial">Commercial Estate / Office</option>
+                                    <option value="industrial">Industrial Facility</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="message" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Situation Summary / Message *</label>
+                            <textarea id="message" rows="5" required placeholder="Describe the water event (e.g., basement flooding, burst pipe, active leak)..." class="w-full px-4 py-3.5 rounded-2xl bg-white/90 border border-slate-200 text-slate-800 text-sm focus:outline-none focus:border-brand-red focus:ring-4 focus:ring-red-50 transition-all duration-300 resize-none"></textarea>
+                        </div>
+
+                        <div class="pt-2">
+                            <button type="submit" class="magnetic-btn w-full py-4 bg-brand-red hover:bg-red-700 text-white font-bold rounded-2xl shadow-lg shadow-red-500/20 transition-all duration-300 hover:scale-[1.01] active:scale-95 flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-paper-plane text-sm"></i>
+                                <span>Transmit Inquiry To Dispatch</span>
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Success Message Container -->
+                    <div id="form-success" class="hidden text-center py-12 space-y-4">
+                        <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl mx-auto animate-bounce">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-brand-dark">Details Successfully Transmitted</h3>
+                        <p class="text-slate-600 text-sm max-w-md mx-auto">Thank you. Your request has been securely routed to our emergency queue. A certified restoration operator will contact your provided phone number shortly.</p>
+                        <button onclick="resetForm()" class="px-6 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl text-xs transition-colors mt-4">
+                            Send Another Message
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="bg-white border-t border-slate-200/80 pt-12 pb-8 relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-slate-100">
+                <a href="#" onclick="switchPage('home')" class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-xl bg-brand-red text-white flex items-center justify-center text-sm font-bold">
+                        <i class="fa-solid fa-droplet"></i>
+                    </div>
+                    <span class="text-lg font-bold text-brand-dark">AquaShield Long Island</span>
+                </a>
+
+                <div class="flex flex-wrap items-center gap-6 text-sm text-slate-500">
+                    <button onclick="switchPage('home')" class="hover:text-brand-red transition-colors">Home</button>
+                    <button onclick="switchPage('services')" class="hover:text-brand-red transition-colors">Services</button>
+                    <button onclick="switchPage('about')" class="hover:text-brand-red transition-colors">About Us</button>
+                    <button onclick="switchPage('blog')" class="hover:text-brand-red transition-colors">Resource Center</button>
+                    <button onclick="switchPage('contact')" class="hover:text-brand-red transition-colors">Contact</button>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+                <p>&copy; 2026 AquaShield Long Island. All rights reserved. Premium Water Restoration Engineering.</p>
+                <div class="flex items-center gap-4">
+                    <a href="https://quickwaterrestore.com/" target="_blank" rel="noopener" class="hover:text-brand-red transition-colors">Partner Network</a>
+                    <span>•</span>
+                    <span>IICRC Standard Compliant</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= HIGH-LEVEL MOTION & APP LOGIC ================= -->
+    <script>
+        // 1. Dynamic Interactive HTML5 Canvas Water Particle Wave Physics
+        const canvas = document.getElementById('water-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        let mouse = { x: width / 2, y: height / 2, targetX: width / 2, targetY: height / 2 };
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            mouse.targetX = e.clientX;
+            mouse.targetY = e.clientY;
+        });
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.radius = Math.random() * 4 + 1;
+                this.vx = (Math.random() - 0.5) * 0.4;
+                this.vy = -Math.random() * 0.6 - 0.2;
+                this.alpha = Math.random() * 0.4 + 0.1;
+                this.maxAlpha = this.alpha;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                // Subtle attraction to mouse cursor position
+                const dx = mouse.x - this.x;
+                const dy = mouse.y - this.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+
+                if (dist < 150) {
+                    this.x -= (dx / dist) * 0.8;
+                    this.y -= (dy / dist) * 0.8;
+                }
+
+                if (this.y < -20 || this.x < -20 || this.x > width + 20) {
+                    this.reset();
+                    this.y = height + 20;
+                }
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(220, 38, 38, ${this.alpha})`;
+                ctx.fill();
+            }
+        }
+
+        const particles = Array.from({ length: 45 }, () => new Particle());
+        let waveStep = 0;
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, width, height);
+
+            // Interpolate mouse smoothly
+            mouse.x += (mouse.targetX - mouse.x) * 0.05;
+            mouse.y += (mouse.targetY - mouse.y) * 0.05;
+
+            // Render background subtle liquid waves
+            waveStep += 0.015;
+            ctx.save();
+            ctx.beginPath();
+            ctx.moveTo(0, height);
+
+            for (let x = 0; x <= width; x += 30) {
+                const y = Math.sin(x * 0.003 + waveStep) * 20 + Math.cos(x * 0.002 + waveStep * 0.8) * 15 + (height * 0.85);
+                ctx.lineTo(x, y);
+            }
+
+            ctx.lineTo(width, height);
+            ctx.closePath();
+            ctx.fillStyle = 'rgba(254, 226, 226, 0.25)';
+            ctx.fill();
+            ctx.restore();
+
+            // Render particles
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            requestAnimationFrame(animateCanvas);
+        }
+
+        // 2. Word-by-Word Title Assembly Constructor
+        function initWordAssembly() {
+            const titles = document.querySelectorAll('.word-assembly-title');
+            titles.forEach(title => {
+                if (title.dataset.splitDone) return;
+                const text = title.innerText;
+                title.innerHTML = '';
+                const words = text.split(' ');
+
+                words.forEach((word, index) => {
+                    const span = document.createElement('span');
+                    span.className = 'word-assembly-span';
+                    span.innerText = word + (index === words.length - 1 ? '' : '\u00A0');
+                    title.appendChild(span);
+                });
+                title.dataset.splitDone = "true";
+            });
+        }
+
+        function triggerWordAssembly() {
+            const spans = document.querySelectorAll('.word-assembly-span');
+            spans.forEach((span, index) => {
+                setTimeout(() => {
+                    span.classList.add('word-in');
+                }, index * 90);
+            });
+        }
+
+        // 3. Apple-Style Scroll & Intersection Observer Assembly Engine
+        function setupScrollAssembly() {
+            const observerOptions = {
+                threshold: 0.15,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, idx) => {
+                    if (entry.isIntersecting) {
+                        // Stagger activation slightly based on element list
+                        setTimeout(() => {
+                            entry.target.classList.add('assembled');
+
+                            // Trigger counter if metric box
+                            const counterEl = entry.target.querySelector('.counter');
+                            if (counterEl && !counterEl.dataset.started) {
+                                runCounter(counterEl);
+                            }
+                        }, 100);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal-assembly').forEach(el => observer.observe(el));
+        }
+
+        // 4. Number Counter Animation
+        function runCounter(el) {
+            el.dataset.started = "true";
+            const target = parseInt(el.dataset.target, 10);
+            let count = 0;
+            const duration = 1500;
+            const stepTime = Math.abs(Math.floor(duration / target));
+
+            const timer = setInterval(() => {
+                count += 1;
+                el.innerText = count;
+                if (count >= target) {
+                    el.innerText = target;
+                    clearInterval(timer);
+                }
+            }, stepTime);
+        }
+
+        // 5. Dynamic Page Switching Logic
+        function switchPage(pageId) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => page.classList.remove('active-page'));
+
+            const selectedPage = document.getElementById(`page-${pageId}`);
+            if (selectedPage) {
+                selectedPage.classList.add('active-page');
+            }
+
+            // Update Nav Buttons
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(btn => {
+                btn.classList.remove('text-brand-red', 'bg-white', 'shadow-sm');
+                btn.classList.add('text-slate-600');
+            });
+
+            const activeBtn = document.getElementById(`nav-${pageId}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('text-slate-600');
+                activeBtn.classList.add('text-brand-red', 'bg-white', 'shadow-sm');
+            }
+
+            // Close Mobile Nav
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu) mobileMenu.classList.add('hidden');
+
+            // Re-trigger visual observers
+            setTimeout(() => {
+                setupScrollAssembly();
+                if (pageId === 'home') triggerWordAssembly();
+            }, 100);
+        }
+
+        // 6. Mobile Menu Toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // 7. Contact Form Handler
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            document.getElementById('contact-form').classList.add('hidden');
+            document.getElementById('form-success').classList.remove('hidden');
+        }
+
+        function resetForm() {
+            const form = document.getElementById('contact-form');
+            form.reset();
+            form.classList.remove('hidden');
+            document.getElementById('form-success').classList.add('hidden');
+        }
+
+        // 8. 3D Card Tilt Interaction
+        function setupTiltCards() {
+            const cards = document.querySelectorAll('.tilt-card');
+            cards.forEach(card => {
+                const inner = card.querySelector('.tilt-card-inner');
+                if (!inner) return;
+
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+
+                    const rotateX = (-y / rect.height) * 12;
+                    const rotateY = (x / rect.width) * 12;
+
+                    inner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    inner.style.transform = `rotateX(0deg) rotateY(0deg) scale(1)`;
+                });
+            });
+        }
+
+        // Initialize All Motion Engines on Window Load
+        window.addEventListener('load', () => {
+            animateCanvas();
+            initWordAssembly();
+            triggerWordAssembly();
+            setupScrollAssembly();
+            setupTiltCards();
+        });
+    </script>
+</body>
+</html>
